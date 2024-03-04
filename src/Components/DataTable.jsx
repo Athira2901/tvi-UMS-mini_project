@@ -3,16 +3,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-
+import Edit from "../modal/Edit";
 
 
 
 export default function DataTable() {
-  function handleEdit(id) {
-    console.log(id);
-  }
+
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -37,8 +34,8 @@ export default function DataTable() {
       headerName: "Edit",
       width: 120,
       renderCell: (params) => (
-        <button onClick={() => handleEdit(params.row.id)}>
-          <FaRegEdit color="green" />
+        <button >
+          <Edit obj={params.row}/>
         </button>
       ),
     },
@@ -55,12 +52,12 @@ export default function DataTable() {
       ),
     },
   ];
-  function handleEdit(){
-    navigate
-  }
+  //  function handleEdit(){
+  //   navigate
+  // }
   
   function handleRemove(id) {
-    console.log(id);
+    // console.log(id);
     axios(`http://localhost:8000/api/delete/${id}`, {
         method: "DELETE",
         headers: {
@@ -96,8 +93,13 @@ export default function DataTable() {
 
 
   return (
+   
     <div style={{ height: 400, width: "100%" }}>
-      <DataGrid
+      <div className="ml-5">
+       <h1 className="mt-2 text-4xl">Dashboard</h1>
+       <h5 className="bg-[#E9ECEF] text-[#6c757D] mt-3 p-3">Dashboard</h5>
+       </div>
+      <DataGrid  className="mt-5"
         rows={datas} 
         columns={columns}
         initialState={{

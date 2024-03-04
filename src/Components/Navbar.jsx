@@ -8,7 +8,7 @@ import { FaSearch } from "react-icons/fa";
 function Navbar(props) {
   return (
     <div className="bg-[#343a40] p-4 flex gap-5 items-center text-white h-[56px] w-screen">
-      Dashboard
+      User Management System
       <div className="flex justify-between w-screen">
         <button onClick={props.handleclick}>
           <IoMenu />

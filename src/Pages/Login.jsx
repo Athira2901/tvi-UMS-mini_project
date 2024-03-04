@@ -52,7 +52,7 @@ function Login() {
             <input
               type="password"
               placeholder="Enter password"
-              className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[302px] border border-gray-300 "
+              className="rounded-lg p-2 text-sm   border border-gray-300 "
               value={password}
               onInput={(e) => setPassword(e.target.value)}
             />
@@ -76,7 +76,7 @@ function Login() {
           </div>
         </form>
         <Link
-          to="/register"
+          to="/Userregister"
           className="text-sm text-center mt-10 text-[#17a2b8]"
         >
           Need an account? Sign up!
