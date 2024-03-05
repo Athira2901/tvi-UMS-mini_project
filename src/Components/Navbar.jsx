@@ -5,10 +5,11 @@ import Sidebar from "./Sidebar";
 import { useState } from "react";
 import Menu from "./Menu";
 import { FaSearch } from "react-icons/fa";
+
 function Navbar(props) {
   return (
     <div className="bg-[#343a40] p-4 flex gap-5 items-center text-white h-[56px] w-screen">
-      User Management System
+      UMS
       <div className="flex justify-between w-screen">
         <button onClick={props.handleclick}>
           <IoMenu />

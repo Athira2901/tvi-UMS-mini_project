@@ -5,10 +5,12 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import Edit from "../modal/Edit";
+import { FcViewDetails } from "react-icons/fc";
+import Viewdetails from "../modal/Viewdetails";
 
 
 
-export default function DataTable() {
+ function DataTable() {
 
 
   const columns = [
@@ -50,6 +52,18 @@ export default function DataTable() {
           <MdDelete color="red" />
         </button>
       ),
+    },
+    {
+      field: "view",
+      headerName: "View",
+      width: 120,
+      renderCell: (params) => (
+        <button >
+          <Viewdetails obj={params.row}/>
+        </button>
+      ),
+     
+      
     },
   ];
   //  function handleEdit(){
@@ -112,3 +126,4 @@ export default function DataTable() {
     </div>
   );
 }
+export default DataTable

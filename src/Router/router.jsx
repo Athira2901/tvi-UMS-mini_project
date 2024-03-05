@@ -8,7 +8,8 @@ import Dasboard from "../Pages/Dasboard";
 import App from "../App";
 import Edit from "../modal/Edit";
 import Userregister from "../Pages/Userregister";
-
+import Userdetails from "../Pages/Userdetails";
+import Supervisor from "../Pages/Supervisor";
 
 const router=createBrowserRouter([
   {path:"",element:<App/>},
@@ -18,7 +19,11 @@ const router=createBrowserRouter([
   {path:"confirmpassword",element:<Confirmpassword/>},
   {path:"dashboard",element:<Dasboard/>},
   {path:"/edit/:id",element:<Edit/>},
-  {path:"userregister",element:<Userregister/>}
+  {path:"userregister",element:<Userregister/>},
+  
+  {path:"supervisor",element:<Supervisor/>},
+  {path:"Userdetails",element:<Userdetails/>}
+  
   
 
 ]);

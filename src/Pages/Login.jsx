@@ -5,8 +5,8 @@ import { setUser } from "../Store/authSlice";
 import {useDispatch} from  "react-redux"
 
 function Login() {
-  const [email, setEmail] = useState("admin@gmail.com");
-  const [password, setPassword] = useState("admin@12345");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   let dispatch=useDispatch()
  
@@ -22,11 +22,21 @@ function Login() {
       .then((response) => {
      
         var token=response.data.access_token
-      
-      dispatch(setUser(token));
+        dispatch(setUser(token));
+         console.log(response.data.role)
+         if(response.data.role == "admin"){
+               navigate('/dashboard')
+         }
+          if(response.data.role == "agent"){
+            navigate('/userdetails')
+         }
+         if(response.data.role == "supervisor"){
+          navigate('/supervisor')
+         }
+     
       // console.log(token)
       // console.log(user1?.token)
-      navigate('/dashboard')
+      // navigate('/dashboard')
     })
   }
   return (
