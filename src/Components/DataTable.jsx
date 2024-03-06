@@ -96,7 +96,7 @@ import Viewdetails from "../modal/Viewdetails";
         genericvalue: "admin",
       },
     })
-    .then((response) => setDatas(response.data.data))
+    .then((response) => setDatas(response.data.users))
     .catch((error) => console.error("Error fetching data:", error));
   }
   useEffect(() => {
@@ -121,7 +121,7 @@ import Viewdetails from "../modal/Viewdetails";
             paginationModel: { page: 0, pageSize: 5 },
           },
         }}
-        pageSizeOptions={[5, 10]}
+        pageSizeOptions={[5, 10,15]}
       />
     </div>
   );

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { setUser } from "../Store/authSlice";
+import { setUser } from "../../Store/authSlice";
 import {useDispatch} from  "react-redux"
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("@gmail.com");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   let dispatch=useDispatch()

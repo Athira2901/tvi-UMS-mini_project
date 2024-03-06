@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./auth.css";
+import "./user.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -28,11 +28,13 @@ function Userregister() {
           .post("http://localhost:8000/api/add", user, {
          
           })
-          .then((response) =>console.log("Registration successful:", response.data));
-          navigate("/Dashboard")
+          .then((response) =>{ console.log(response)
+            if(response.status==201){
+              navigate("/Dashboard")
+            }});
         }
   return (
-    <div className="bg-[#63738a] h-[120%] pt-10 flex flex-col items-center">
+    <div className="bg-[#63738a] h-[120%] pt-6 flex flex-col items-center">
       <div className="bg-white mt-6 flex flex-col items-center  m-[20px] w-[80%] md:w-[90%] lg:w-[50%]  rounded-lg">
         <div className="mt-5 border border-b-gray-300  p-5 w-[100%]">
           <h1 className=" text-center text-4xl  ">User Register</h1>

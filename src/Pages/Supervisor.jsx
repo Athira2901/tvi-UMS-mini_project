@@ -47,7 +47,7 @@ const navigate=useNavigate()
         genericvalue: "supervisor",
       },
     })
-    .then((response) => setDatas(response.data.data))
+    .then((response) => setDatas(response.data.users))
     .catch((error) => console.error("Error fetching data:", error));
   }
   useEffect(() => {

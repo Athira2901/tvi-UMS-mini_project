@@ -1,6 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
-import Login from "../Pages/Login";
-import Register from "../Pages/Register";
+import Login from "../Pages/Authentication/Login";
+import Register from "../Pages/Authentication/Register";
 import Passwordrecovery from "../Pages/Passwordrecovery";
 import Otpgenerator from "../Pages/Otpgenerator";
 import Confirmpassword from "../Pages/Confirmpassword";
@@ -10,6 +10,7 @@ import Edit from "../modal/Edit";
 import Userregister from "../Pages/Userregister";
 import Userdetails from "../Pages/Userdetails";
 import Supervisor from "../Pages/Supervisor";
+// import Edituser from "../Pages/Edituser";
 
 const router=createBrowserRouter([
   {path:"",element:<App/>},
@@ -22,7 +23,8 @@ const router=createBrowserRouter([
   {path:"userregister",element:<Userregister/>},
   
   {path:"supervisor",element:<Supervisor/>},
-  {path:"Userdetails",element:<Userdetails/>}
+  {path:"Userdetails",element:<Userdetails/>},
+  // {path:"edituser",element:<Edituser/>}
   
   
 
