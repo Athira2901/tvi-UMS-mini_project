@@ -7,10 +7,38 @@ import {useDispatch} from  "react-redux"
 function Login() {
   const [email, setEmail] = useState("@gmail.com");
   const [password, setPassword] = useState("");
+  const [message,setMessage] = useState("")
+  const[values,setValues]=useState("")
   const navigate = useNavigate();
   let dispatch=useDispatch()
  
-  
+    
+  function handleEmail(e){
+    setEmail(e.target.value)
+    let emailRegex = /[a-z0-9]+\.[a-z]{2,3}/;
+    if(email==""){
+      setMessage("email is required")
+    }
+    
+    else if(!emailRegex.test(email)){
+      setMessage("error!you have entered invalid email")
+    }
+    else{
+      setMessage("")
+    }
+  }
+  function handlepassword(e){
+    setPassword(e.target.value)
+    if(password==""){
+      setValues("Password is required")
+    }
+    else if(password.length < 8){
+      setValues("Password must be more than 8 characters")
+    }
+    else{
+      setValues("")
+    }
+  }
   function loguser(e) {
     e.preventDefault();
     let user = {
@@ -38,6 +66,14 @@ function Login() {
       // console.log(user1?.token)
       // navigate('/dashboard')
     })
+    if(email==""){
+      setMessage("email is required")
+    }
+    if(password==""){
+      setValues("Password is required")
+    }
+
+
   }
   return (
     <div className="bg-[#007bff] h-screen pt-10 flex flex-col items-center">
@@ -53,8 +89,9 @@ function Login() {
               placeholder="Enter email address"
               className=" rounded-lg p-2 border border-gray-300 "
               value={email}
-              onInput={(e) => setEmail(e.target.value)}
-            />
+             
+              onChange={handleEmail}
+            /><div className="text-[red] text-sm">{message}</div>
           </div>
 
           <div className="flex flex-col gap-2 m-2 ">
@@ -64,8 +101,9 @@ function Login() {
               placeholder="Enter password"
               className="rounded-lg p-2 text-sm   border border-gray-300 "
               value={password}
-              onInput={(e) => setPassword(e.target.value)}
-            />
+              // onInput={(e) => setPassword(e.target.value)}
+              onChange={handlepassword}
+            /><div className="text-[red] text-sm">{values}</div>
           </div>
 
           <div className="flex ">

@@ -3,30 +3,29 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { FaUser } from "react-icons/fa";
-import { removeUser } from '../Store/authSlice';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 import { IoMdArrowDropdown } from "react-icons/io";
 import Logout from '../modal/Logout';
 
 
 export default function bMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  let dispatch=useDispatch()
- let  navigate=useNavigate()
+  const [openm, setOpenm] = React.useState(false);
+  const handleOpen = () => setOpenm(true);
+  
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-  function handleClose(){
-    dispatch(removeUser())
-    navigate('/')
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  // function handleClose(){
+  //   dispatch(removeUser())
+  //   navigate('/')
 
     // <Logout/>
-  }
+  
 
   return (
     <div>
@@ -51,7 +50,8 @@ export default function bMenu() {
         }}
       >
       
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      
+        <Logout open={openm} setOpen={setOpenm} handleOpen={handleOpen}/>
       </Menu>
     </div>
   );

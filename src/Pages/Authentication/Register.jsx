@@ -11,6 +11,7 @@ function Register() {
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
+  const [errors,setErrors]=useState([])
   const navigate = useNavigate();
   let user1 = useSelector((store) => store.auth.user);
   let details = localStorage.getItem("user");
@@ -39,7 +40,15 @@ function Register() {
       if(response.status==201){
         navigate("/Dashboard")
       }});
+
    
+  }
+  const validate =(values) =>{
+     const errors ={};
+     const regex=/[a-z0-9]+\.[a-z]{2,3}/;
+     if(!values.firstName){
+      errors.firstName="Firstname is required"
+     }
   }
   return (
     <div className="bg-[#007bff] h-[120%]  flex flex-col items-center">
