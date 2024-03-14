@@ -10,8 +10,9 @@ import Viewdetails from "../modal/Viewdetails";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import PaginationSize from "./Pagination";
 function DataTable() {
-  const[input,setInput]=useState()
+  const [input, setInput] = useState();
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "firstName", headerName: "First name", width: 130 },
@@ -57,10 +58,11 @@ function DataTable() {
   ];
 
   let details = localStorage.getItem("user");
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const user1 = useSelector((store) => store.auth.user);
   const [datas, setDatas] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [total, setTotal] = useState();
 
   function handleRemove(id) {
     axios
@@ -75,16 +77,24 @@ function DataTable() {
       .catch((error) => console.error("Error fetching data:", error.message));
   }
 
-  function userlist() {
+  function userlist(n = 1) {
     axios
-      .get(`http://localhost:8000/api/users`, {
+      .get(`http://localhost:8000/api/users?page=${n}`, {
         headers: {
           Authorization: user1 || details,
           genericvalue: "admin",
         },
       })
-      .then((response) => setDatas(response.data.users))
+      .then((response) => {
+        setDatas(response.data.users);
+        // console.log(response.data.totalCount);
+        setTotal(response.data.totalCount);
+      })
       .catch((error) => console.error("Error fetching data:", error));
+  }
+  function cpage(num) {
+    console.log(num)
+    userlist(num);
   }
 
   function Searchuser() {
@@ -102,13 +112,13 @@ function DataTable() {
   useEffect(() => {
     userlist();
   }, [searchQuery]);
-function backbtn(){
-  navigate('/Dashboard')
-}
+  function backbtn() {
+    navigate("/Dashboard");
+  }
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div style={{ height: 485, width: "100%" }} >
       <div className="ml-5">
-        <h1 className="mt-2 text-4xl">Dashboard</h1>
+        <h5 className="mt-2 text-3xl">Data Table</h5>
         <div className="bg-[#E9ECEF] text-[#6c757D] ml-2 mt-3 p-3 flex">
           <input
             placeholder="Search for..."
@@ -125,8 +135,9 @@ function backbtn(){
         </div>
       </div>
       {datas.length > 0 ? (
+        <div className="mt-5 ">
         <DataGrid
-          className="mt-5"
+          // className="mt-5 h-[500] border border-[red]"
           rows={datas}
           columns={columns}
           initialState={{
@@ -134,15 +145,15 @@ function backbtn(){
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
-          pageSizeOptions={[5, 10, 15]}
+          // pageSizeOptions={[5, 10, 15]}
         />
-       ) : (
+        </div>
+      ) : (
         <div className="text-[red]">
-        <p>No users found</p>
-      
-       
+          <p>No users found</p>
         </div>
       )}
+      <PaginationSize cpage={cpage} total={total} />
     </div>
   );
 }

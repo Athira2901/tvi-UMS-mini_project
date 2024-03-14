@@ -5,14 +5,15 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { FcViewDetails } from "react-icons/fc";
 import { useState } from 'react';
-
+import userLogo from "../assets/userLogo.jpg";
 const style = {
   position: 'absolute',
   top: '50%',
  
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 500,
+  width: 400,
+  height:600,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -28,6 +29,7 @@ const style = {
   const [email, setEmail] = useState(props.obj.email)
   const [role, setRole] = useState(props.obj.role)
   const [password, setPassword] = useState(props.obj.password)
+  const [imge, setImge] = useState(props.obj.imageURL)
   
 
   function view(){
@@ -51,42 +53,46 @@ const style = {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <h1 className='text-center text-3xl'>View User</h1>
+        <h1 className='text-center text-2xl'>View User</h1>
           <form className="flex flex-col   w-[100%] ">
-        <div className="grid grid-cols-1  ">
-        <div className="flex flex-col gap-2   ">
+              <img 
+              src={imge?imge: userLogo}
+              className="h-[100px] w-[100px] ml-[115px] mt-3 rounded-lg"
+            />
+        <div className=" flex w-[150px] mt-2">
+        <div className="flex flex-col gap-1  ">
           <label>First Name</label>
           <input
 
             type="text"
             placeholder="Enter first name"
-            className="rounded-lg   text-sm p-2 border border-gray-300  "
+            className="rounded-lg   text-sm p-1 border-none  border-gray-300  "
             // value={fname}
             defaultValue={fname}
-            onChange={(e)=>setFname(e.target.value)}
+           disabled
           />
         </div>
-        <div className="flex flex-col gap-2  ">
+        <div className="flex flex-col gap-1   ">
           <label>Last Name</label>
           <input
 
             type="text"
             placeholder="Enter last name"
-            className="rounded-lg   text-sm p-2 border border-gray-300 "
+            className="rounded-lg  w-[100px] text-sm p-2 border-none border-gray-300 "
             defaultValue={sname}
-            onInput={(e)=>setSname(e.target.value)}
+           disabled
           />
         </div>
         </div>
-        <div className="flex flex-col gap-2  "> 
+        <div className="flex flex-col gap-1   "> 
           <label>Email</label>
           <input
 
             type="email"
             placeholder="Enter email address"
-            className=" rounded-lg p-2 border border-gray-300 "
+            className=" rounded-lg p-2 border-none border-gray-300 "
             defaultValue={email}
-            onInput={(e)=>setEmail(e.target.value)}
+            disabled
           />
         </div>
         <div>
@@ -96,9 +102,9 @@ const style = {
 
                 type="text"
                 placeholder="Enter email address"
-                className=" rounded-lg  border border-gray-300 "
+                className=" rounded-lg  border-none border mt-3 border-gray-300 "
                 defaultValue={role}
-                onInput={(e)=>setRole(e.target.value)}
+                disabled
                 />
             
         </div>
@@ -109,9 +115,9 @@ const style = {
 
             type="text"
             placeholder="Enter password"
-            className="rounded-lg  p-2 text-sm   border border-gray-300 "
+            className="rounded-lg  border-none p-2 text-sm   border border-gray-300 "
             defaultValue={password}
-            onInput={(e)=>setPassword(e.target.value)}
+             disabled
           />
         </div>
      
