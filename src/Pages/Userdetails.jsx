@@ -25,7 +25,7 @@ function Userdetails() {
           Authorization: user1 || details,
         },
       })
-      .then((response) => setUserdetails(response.data.data))
+      .then((response) => setUserdetails(response.data.result))
       .catch((error) => console.error("Error fetching user details:", error));
   }, [user1, details]);
 
@@ -41,7 +41,7 @@ function Userdetails() {
     const user = {
       firstName: fname || userdetails.firstName,
       lastName: sname || userdetails.lastName,
-      imageURL:  datas ,
+      imageURL: datas,
     };
     axios
       .put("http://localhost:8000/api/me/update-user", user, {
@@ -52,7 +52,7 @@ function Userdetails() {
       })
       .then((response) => {
         console.log("User details updated successfully:", response.data);
-        userprofile()
+        userprofile();
       })
       .catch((error) => {
         console.error("Failed to update user details:", error);
@@ -61,11 +61,16 @@ function Userdetails() {
   function edit() {
     setIsedit(true);
   }
+  const fullname =(userdetails.firstName)[0]
+    // fname && fname.length > 0 && sname && sname.length > 0
+    //   ? fname[0] + sname[0]
+    //   : "";
+  console.log(fullname);
   return (
     <div className="bg-[#2B344580] h-full md:h-[655px] overflow-y-scroll flex flex-col items-center">
       <div className="fixed z-10">
         <Navbar />
-        </div>
+      </div>
       <div className="bg-[#E6E6E6] relative top-[60px] z-0 flex flex-col items-center   m-[20px] w-[80%] md:w-[90%] lg:w-[50%]  rounded-lg">
         <div className="mt-5 border border-b-gray-300  p-5 w-[100%]">
           <h1 className=" text-center text-4xl  ">User details</h1>
@@ -73,10 +78,22 @@ function Userdetails() {
 
         <form className="flex flex-col mt-1 border border-b-gray-300 p-3 w-[100%] ">
           <div className="flex flex-col items-center">
-            <img
-              src={datas ? datas : userLogo}
-              className="h-[100px] w-[100px] "
-            />
+            {/* <img
+  src={datas ? datas : (userdetails.imageURL ? userdetails.imageURL : fullname)}
+  className="h-[100px] w-[100px]"
+/> */}
+            <div className="h-[100px] flex justify-center items-center  rounded-lg text-center ">
+              {datas ? (
+                <img
+                  src={datas}
+                  className="h-[115px] w-[125px] mt-3 rounded-xl"
+                />
+              ) : (
+                <div className="text-3xl rounded-[50%] flex justify-center items-center p-5  bg-[#343a40] text-white  ">
+                  {fullname}
+                </div>
+              )}
+            </div>
             {isedit ? <Uploadimg handlefn={handlefn} /> : ""}
           </div>
           {isedit ? (
@@ -87,7 +104,7 @@ function Userdetails() {
                   type="text"
                   placeholder="Enter first name"
                   className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[302px] border border-gray-300"
-                  defaultValue={userdetails.firstName}
+                  defaultValue={userdetails?.firstName}
                   onChange={(e) => setFname(e.target.value)}
                 />
               </div>

@@ -2,6 +2,8 @@ import React from 'react'
 import { AiOutlineDashboard } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'
+import { FaTable } from "react-icons/fa";
+
 
 function Sidebar() {
     const navigate=useNavigate()
@@ -11,6 +13,9 @@ function Sidebar() {
     function dashboard(){
        navigate("/Dashboard")
     }
+    function datatable(){
+      navigate("/datatable")
+    }
     
   return (
     
@@ -19,9 +24,16 @@ function Sidebar() {
       <div className='text-[#FFFFFF40] text-sm '>
        <p>CORE</p>
        </div>
+       <div>
        <div className='text-[#FFFFFF80] hover:text-white mt-4 flex items-center gap-2'>
        <AiOutlineDashboard />
         <button onClick={dashboard}>Dashboard</button>
+       </div >
+       <div className='text-[#FFFFFF80] hover:text-white mt-4 flex items-center gap-2'> 
+       <FaTable />
+
+        <button onClick={datatable}>Datatable</button>
+       </div>
        </div>
        <div className='text-[#FFFFFF40] text-sm mt-3 '>
        <p>INTERFACE</p>

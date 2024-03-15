@@ -56,7 +56,7 @@ function updateuser(){
      password:password,
     
     }
-    axios.put("http://localhost:8000/api/update/"+props.obj.id,user,{
+    axios.put("http://localhost:8000/api/update/"+props.obj._id,user,{
       headers:{
         Authorization:user1||details,
         genericvalue:"admin"

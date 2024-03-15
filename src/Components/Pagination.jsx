@@ -3,7 +3,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 export default function BasicPagination(props) {
-    const  page=Math.ceil(props.total/5)
+    const  page=Math.ceil(props.total/10)
   return (
     <Stack spacing={2}>
      

@@ -14,7 +14,7 @@ import PaginationSize from "./Pagination";
 function DataTable() {
   const [input, setInput] = useState();
   const columns = [
-    { field: "id", headerName: "ID", width: 70 },
+    { field: "_id", headerName: "ID", width: 70 },
     { field: "firstName", headerName: "First name", width: 130 },
     { field: "lastName", headerName: "Last name", width: 130 },
     { field: "email", headerName: "Email", type: "email", width: 90 },
@@ -40,7 +40,7 @@ function DataTable() {
       headerName: "Delete",
       width: 140,
       renderCell: (params) => (
-        <button onClick={() => handleRemove(params.row.id)}>
+        <button onClick={() => handleRemove(params.row._id)}>
           <MdDelete color="red" />
         </button>
       ),
@@ -140,9 +140,10 @@ function DataTable() {
           // className="mt-5 h-[500] border border-[red]"
           rows={datas}
           columns={columns}
+          getRowId={(row)=>row._id}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
+              paginationModel: { page: 0, pageSize: 10 },
             },
           }}
           // pageSizeOptions={[5, 10, 15]}
