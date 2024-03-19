@@ -11,6 +11,8 @@ import Userregister from "../Pages/Userregister";
 import Userdetails from "../Pages/Userdetails";
 import Supervisor from "../Pages/Supervisor";
 import DataTable from "../Components/DataTable";
+import Products from "../Pages/Product/Products";
+import Addproducts from "../Pages/Product/Addproducts";
 // import Edituser from "../Pages/Edituser";
 
 const router=createBrowserRouter([
@@ -25,9 +27,10 @@ const router=createBrowserRouter([
   
   {path:"supervisor",element:<Supervisor/>},
   {path:"Userdetails",element:<Userdetails/>},
-  {path:"datatable",element:<DataTable/>}
+  {path:"datatable",element:<DataTable/>},
   // {path:"edituser",element:<Edituser/>}
-  
+  {path:"/product",element:<Products/>},
+  {path:"/add",element:<Addproducts/>}
   
 
 ]);

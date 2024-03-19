@@ -39,8 +39,19 @@ function Viewdetails(props) {
         Authorization: user1 || details,
         genericvalues: "admin",
       },
-    });
+    }).then((response)=>console.log(response))
   }
+
+  React.useEffect(()=>{
+    const imagee=props.obj.image?.data
+    console.log(" ~ React.useEffect ~ image:", imagee)
+    
+    const base64String = btoa(
+      String.fromCharCode(...new Uint8Array(imagee))
+      );
+      
+      setImge(base64String);
+  })
 
   return (
     <div>
@@ -65,7 +76,7 @@ function Viewdetails(props) {
 
               {imge ? (
                 <img
-                  src={imge}
+                src={`data:image/png;base64,${imge}`}
                   className="h-[100px] w-[100px] ml-[250px] mt-3 rounded-lg"
                 />
               ) : (
@@ -91,6 +102,7 @@ function Viewdetails(props) {
                   className="rounded-lg w-[100px] text-lg p-2 border-none border-gray-300"
                   defaultValue={sname}
                   disabled
+                  
                 />
               </div>
             </div>

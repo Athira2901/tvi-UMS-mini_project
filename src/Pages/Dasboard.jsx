@@ -5,59 +5,70 @@ import Sidebar from "../Components/Sidebar";
 import { useState } from "react";
 import { AiOutlineAreaChart } from "react-icons/ai";
 import { IoBarChart } from "react-icons/io5";
-
+import Products from "./Product/Products";
 import Barchart from "../Components/Barchart";
 import AreaChart from "../Components/Areachart";
 function Dashboard() {
   const [ishide, setIshide] = useState(false);
+  const [dat, setDat] = useState("");
   function handleclick() {
     setIshide((current) => !current);
   }
+  function click(msg) {
+    console.log(msg)
+    setDat(msg);
+  }
   return (
-    <div >
-    
+    <div>
       <div>
         <Navbar handleclick={handleclick} />
       </div>
-      
-      <div className="flex ">
+
+      <div className="flex w-full">
         {/* {ishide && <Sidebar />} */}
         <div
           className={`transition-all duration-500 ${
             ishide ? "w-[225px]" : "w-0"
           } overflow-hidden`}
         >
-          <Sidebar />
+          <Sidebar click={click} />
         </div>
         {/* <div className="flex justify-center gap-5">
         <h1 className="mt-2 text-xl">Areachart</h1>
         <h1 className="mt-2 flex-justify-center text-xl">Barchart</h1>
         </div> */}
-        <div className="flex flex-col h-[900px] overflow-scroll w-screen ">
-        <div className="ml-5">
-      <h1 className="mt-2 text-4xl">Dashboard</h1>
-      </div>
-      <div>
-        <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3"> Dashboard</h6>
-      </div>
-        <div className="flex border justify-center">
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2 ml-[50px]">
-          <AiOutlineAreaChart  />
-          <h1 className="mt-1 text-xl">Areachart</h1>
+        {dat == "dashboard" ? (
+          <div className="flex flex-col h-[900px] overflow-scroll w-screen ">
+            <div className="ml-5">
+              <h1 className="mt-2 text-4xl">Dashboard</h1>
+            </div>
+            <div>
+              <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3">
+                {" "}
+                Dashboard
+              </h6>
+            </div>
+            <div className="flex border justify-center">
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2 ml-[50px]">
+                  <AiOutlineAreaChart />
+                  <h1 className="mt-1 text-xl">Areachart</h1>
+                </div>
+                <AreaChart />
+              </div>
+              <div className="flex flex-col ">
+                <div className="flex items-center gap-2 ml-[180px]">
+                  <IoBarChart />
+                  <h1 className="mt-1 flex- text-xl">Barchart</h1>
+                </div>
+                <Barchart />
+              </div>
+            </div>
+            <DataTable />
           </div>
-          <AreaChart />
-          </div>
-          <div className="flex flex-col ">
-            <div className="flex items-center gap-2 ml-[180px]">
-          <IoBarChart />
-          <h1 className="mt-1 flex- text-xl">Barchart</h1>
-          </div>
-          <Barchart />
-          </div>
-        </div>
-        <DataTable />
-        </div>
+        ) : (
+          <Products />
+        )}
       </div>
     </div>
   );

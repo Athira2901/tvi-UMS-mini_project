@@ -25,7 +25,9 @@ function Userdetails() {
           Authorization: user1 || details,
         },
       })
-      .then((response) => setUserdetails(response.data.result))
+      .then((response) => 
+      {setUserdetails(response.data.result)
+      console.log(response.data.result)})
       .catch((error) => console.error("Error fetching user details:", error));
   }, [user1, details]);
 
@@ -61,11 +63,17 @@ function Userdetails() {
   function edit() {
     setIsedit(true);
   }
-  const fullname =(userdetails.firstName)[0]
-    // fname && fname.length > 0 && sname && sname.length > 0
-    //   ? fname[0] + sname[0]
-    //   : "";
-  console.log(fullname);
+
+  const fullName = `${userdetails.firstName} ${userdetails.lastName}`
+
+  let words = fullName.split(" ");
+
+  let fullname = words
+    .map((word) => word[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
     <div className="bg-[#2B344580] h-full md:h-[655px] overflow-y-scroll flex flex-col items-center">
       <div className="fixed z-10">
