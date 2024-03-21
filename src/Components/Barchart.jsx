@@ -53,13 +53,14 @@ const data = [
 
 export default function Barchart() {
   return (
-    <BarChart   width={600}
-    height={400}
+    <BarChart   
+    width={400}
+    height={350}
     data={data}
     margin={{
       top: 10,
-      right: 5,
-      left: 170,
+      right: 30,
+      left: 0,
       bottom: 0
     }} >
       <Bar dataKey="uv" fill="#8884d8" />

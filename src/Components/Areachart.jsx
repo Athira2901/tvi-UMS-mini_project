@@ -57,8 +57,8 @@ const data = [
 export default function App() {
   return (
     <AreaChart
-      width={500}
-      height={400}
+      width={400}
+      height={350}
       data={data}
       margin={{
         top: 10,
@@ -71,7 +71,8 @@ export default function App() {
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
-      <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+      <Area type="monotone" stackId="1" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+      <Area type="monotone" stackId="1" dataKey="pv" stroke="#8884d8" fill="#42A5f5" />
     </AreaChart>
   );
 }

@@ -5,6 +5,7 @@ import { useState } from "react";
 import Productlist from "./Productlist";
 import { useNavigate } from "react-router-dom";
 import { IoIosAdd } from "react-icons/io";
+import Viewproduct from "./Viewproduct";
 function Products() {
 const navigate=useNavigate()
   function Add(){
@@ -14,10 +15,11 @@ const navigate=useNavigate()
   return (
    
       
-      <div className="flex flex-1 h-screen">
+      <div className="flex flex-1 h-screen overflow-scroll">
       
 
         <div className="w-full">
+          
           <div className="ml-5">
             <h1 className="mt-2 text-4xl">Products</h1>
           </div>
@@ -26,9 +28,10 @@ const navigate=useNavigate()
               products
 
             </h6>
-            <div className="flex  p-5 items-center bg-[green] text-white h-[40px] w-[100px]  rounded-md hover:text-[green] hover:bg-white hover:outline outline-green-500 mr-[70px] ">
+          
+            <div onClick={Add} className="flex  p-5 items-center bg-[green] text-white h-[40px] w-[100px]  rounded-md hover:text-[green] hover:bg-white hover:outline outline-green-500 mr-[70px] ">
             <IoIosAdd />
-            <button onClick={Add} >ADD</button>
+            <button  >ADD</button>
             </div>
           </div>
           <div className="p-5 w-full">

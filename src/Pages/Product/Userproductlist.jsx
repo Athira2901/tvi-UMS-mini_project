@@ -3,13 +3,17 @@ import { useSelector } from "react-redux";
 import products from "../../assets/products.png";
 import axios from "axios";
 import PaginationSize from "../../Components/Pagination";
+// import Usernavbar from "../../Components/Usernavbar";
 // import { useNavigate } from "react-router-dom";
 import Viewproduct from "./Viewproduct";
-function Productlist() {
+import { FaRegHeart } from "react-icons/fa";
+function Userproductlist() {
+
   const [list, setList] = useState([]);
   const [total, setTotal] = useState(0);
   const [open, setOpen] = useState(false);
   const [vid, setVid] = useState("")
+  
  
   function handleOpen(id){
     setVid(id)
@@ -50,20 +54,33 @@ function Productlist() {
      
       className="flex  flex-col justify-center border w-full "
     >
+      {/* <div>
+        <Usernavbar handleclick={handleclick}/>
+      </div> */}
         {open ? (<Viewproduct open={open} cart={cart} setOpen={setOpen} vid={vid}/>) : ""}
       <div className="flex flex-wrap justify-center   w-full">
+      
         {list.map((li) => (
+           
           <div
-           onClick={()=>handleOpen(li._id)}
+           
           key={li._id}
-          className="border border-gray-400  w-[230px] m-[10px] flex flex-col items-center p-[60px] rounded-lg cursor-pointer bg-gradient-to-r from-[#eeaeca] to-[#9f94e9] shadow-3xl border-none"
+          className="border border-gray-400 relative w-[230px] h-[280px] m-[10px] flex flex-col items-center  rounded-lg cursor-pointer bg-gradient-to-r from-[#eeaeca] to-[#9f94e9] shadow-3xl border-none"
           >
+          <div className="absolute top-2 right-2  ">
+             <FaRegHeart />
+             </div>
+             <div onClick={()=>handleOpen(li._id)} className=" h-full w-full mt-[30px] flex flex-col items-center  justify-center">
             <img src={products} alt="pdct" className="w-[100px] " />
             <div className="flex  flex-col ">
               <h1 className="pt-5">{li.productName}</h1>
               <h5 className="text-[grey] ">${li.productPrice}</h5>
             </div>
+            </div>
+            
+           
           </div>
+          
         ))}
       </div>
       <div className="flex justify-center mt-3">
@@ -73,4 +90,4 @@ function Productlist() {
   );
 }
 
-export default Productlist;
+export default Userproductlist;

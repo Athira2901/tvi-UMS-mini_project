@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../Components/Sidebar";
 import axios from "axios";
 import userLogo from "../assets/userLogo.jpg";
 import Uploadimg from "../Components/Uploadimg";
@@ -16,7 +17,7 @@ function Userdetails() {
   const navigate = useNavigate();
   const details = localStorage.getItem("user");
   const [datas, setDatas] = useState("");
-
+  const [ishide, setIshide] = useState(false);
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/me", {
@@ -75,22 +76,17 @@ function Userdetails() {
     .toUpperCase();
 
   return (
-    <div className="bg-[#2B344580] h-full md:h-[655px] overflow-y-scroll flex flex-col items-center">
-      <div className="fixed z-10">
-        <Navbar />
-      </div>
-      <div className="bg-[#E6E6E6] relative top-[60px] z-0 flex flex-col items-center   m-[20px] w-[80%] md:w-[90%] lg:w-[50%]  rounded-lg">
+    <div className="bg-[#2B344580] h-full  flex flex-col items-center ">
+      
+   
+      <div className="bg-[#E6E6E6]  top-[60px]  flex flex-col items-center  border border-black m-[50px] w-[80%] md:w-[90%] lg:w-[60%]  rounded-lg">
         <div className="mt-5 border border-b-gray-300  p-5 w-[100%]">
           <h1 className=" text-center text-4xl  ">User details</h1>
         </div>
 
         <form className="flex flex-col mt-1 border border-b-gray-300 p-3 w-[100%] ">
-          <div className="flex flex-col items-center">
-            {/* <img
-  src={datas ? datas : (userdetails.imageURL ? userdetails.imageURL : fullname)}
-  className="h-[100px] w-[100px]"
-/> */}
-            <div className="h-[100px] flex justify-center items-center  rounded-lg text-center ">
+          <div className="flex flex-col items-center ">
+            <div className="h-[100px] flex justify-center items-center w-[10vw] rounded-lg text-center ">
               {datas ? (
                 <img
                   src={datas}
@@ -111,7 +107,7 @@ function Userdetails() {
                 <input
                   type="text"
                   placeholder="Enter first name"
-                  className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[302px] border border-gray-300"
+                  className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[210px] xl:w-[302px] border border-gray-300"
                   defaultValue={userdetails?.firstName}
                   onChange={(e) => setFname(e.target.value)}
                 />
@@ -121,7 +117,7 @@ function Userdetails() {
                 <input
                   type="text"
                   placeholder="Enter last name"
-                  className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[302px] border border-gray-300"
+                  className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[210px] xl:w-[302px] border border-gray-300"
                   defaultValue={userdetails.lastName}
                   onChange={(e) => setSname(e.target.value)}
                 />
@@ -134,7 +130,7 @@ function Userdetails() {
                 <input
                   type="text"
                   placeholder="Enter first name"
-                  className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[302px] border border-gray-300"
+                  className="rounded-lg lg:w-[185px] p-2 text-sm md:w-[110px]  xl:w-[302px] border border-gray-300"
                   defaultValue={userdetails.firstName}
                   onChange={(e) => setFname(e.target.value)}
                   disabled
@@ -145,7 +141,7 @@ function Userdetails() {
                 <input
                   type="text"
                   placeholder="Enter last name"
-                  className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[302px] border border-gray-300"
+                  className="rounded-lg lg:w-[185px] p-2 text-sm md:w-[210px] xl:w-[302px] border border-gray-300"
                   defaultValue={userdetails.lastName}
                   onChange={(e) => setSname(e.target.value)}
                   disabled
@@ -203,7 +199,8 @@ function Userdetails() {
           </div>
         </form>
       </div>
-    </div>
+      </div>
+    //  </div>
   );
 }
 

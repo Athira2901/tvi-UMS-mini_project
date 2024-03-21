@@ -29,7 +29,7 @@ function add(e){
             genericvalue:"admin"
         }
     }).then((response)=>{console.log(response)
-        navigate("/product")
+        navigate(-1)
     })
    
 }

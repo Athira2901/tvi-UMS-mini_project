@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import DataTable from "../Components/DataTable";
 import Sidebar from "../Components/Sidebar";
@@ -18,18 +18,21 @@ function Dashboard() {
     console.log(msg)
     setDat(msg);
   }
+  useEffect(()=>{
+    console.log("sdsd",dat)
+  },[])
   return (
-    <div>
-      <div>
+    <div className="overflow-scroll h-screen">
+      <div className="fixed z-10">
         <Navbar handleclick={handleclick} />
       </div>
 
-      <div className="flex w-full">
+      <div className="flex w-full  relative top-[56px]">
         {/* {ishide && <Sidebar />} */}
         <div
           className={`transition-all duration-500 ${
             ishide ? "w-[225px]" : "w-0"
-          } overflow-hidden`}
+          } overflow-hidden `}
         >
           <Sidebar click={click} />
         </div>
@@ -37,8 +40,11 @@ function Dashboard() {
         <h1 className="mt-2 text-xl">Areachart</h1>
         <h1 className="mt-2 flex-justify-center text-xl">Barchart</h1>
         </div> */}
-        {dat == "dashboard" ? (
-          <div className="flex flex-col h-[900px] overflow-scroll w-screen ">
+        {dat == "product" ? (
+           <Products />
+          
+        ) : (
+          <div className="flex flex-col h-[900px] overflow-scroll w-screen">
             <div className="ml-5">
               <h1 className="mt-2 text-4xl">Dashboard</h1>
             </div>
@@ -48,7 +54,7 @@ function Dashboard() {
                 Dashboard
               </h6>
             </div>
-            <div className="flex border justify-center">
+            <div className="flex flex-col md:flex-row gap-5 items-center md:justify-center p-4">
               <div className="flex flex-col">
                 <div className="flex items-center gap-2 ml-[50px]">
                   <AiOutlineAreaChart />
@@ -59,15 +65,13 @@ function Dashboard() {
               <div className="flex flex-col ">
                 <div className="flex items-center gap-2 ml-[180px]">
                   <IoBarChart />
-                  <h1 className="mt-1 flex- text-xl">Barchart</h1>
+                  <h1 className="mt-1 r text-xl">Barchart</h1>
                 </div>
                 <Barchart />
               </div>
             </div>
             <DataTable />
           </div>
-        ) : (
-          <Products />
         )}
       </div>
     </div>

@@ -56,7 +56,7 @@ function Login() {
                navigate('/dashboard')
          }
           if(response.data.role == "agent"){
-            navigate('/userdetails')
+            navigate('/userproduct')
          }
          if(response.data.role == "supervisor"){
           navigate('/supervisor')

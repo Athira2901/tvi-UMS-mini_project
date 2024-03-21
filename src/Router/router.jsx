@@ -13,6 +13,7 @@ import Supervisor from "../Pages/Supervisor";
 import DataTable from "../Components/DataTable";
 import Products from "../Pages/Product/Products";
 import Addproducts from "../Pages/Product/Addproducts";
+import Userproduct from "../Pages/Product/Userproducts";
 // import Edituser from "../Pages/Edituser";
 
 const router=createBrowserRouter([
@@ -30,7 +31,8 @@ const router=createBrowserRouter([
   {path:"datatable",element:<DataTable/>},
   // {path:"edituser",element:<Edituser/>}
   {path:"/product",element:<Products/>},
-  {path:"/add",element:<Addproducts/>}
+  {path:"/add",element:<Addproducts/>},
+  {path:"/userproduct",element:<Userproduct/>}
   
 
 ]);
