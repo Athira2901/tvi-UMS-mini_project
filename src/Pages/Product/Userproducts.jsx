@@ -26,11 +26,11 @@ const navigate=useNavigate()
     navigate("/add")
   }
   return (
-   <div>
-      <div>
+   <div className="overflow-scroll h-screen">
+      <div className="fixed z-10 w-[1309px]" >
     <Usernavbar handleclick={handleclick} />
   </div>
-  <div className="flex w-full">
+  <div className="flex w-full  relative top-[56px]">
   <div
      className={`transition-all duration-500 ${
       ishide ? "w-[225px]" : "w-0"
@@ -72,7 +72,7 @@ const navigate=useNavigate()
             <h1 className="mt-2 text-4xl">Product List</h1>
           </div>
           <div className="flex items-center justify-between">
-            <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3">
+            <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
               productlist
 
             </h6>

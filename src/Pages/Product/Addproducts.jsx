@@ -8,7 +8,7 @@ function Addproducts() {
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [category, setCategory] = useState("")
-    const [quantity, setQuantity] = useState("")
+    const [stock, setStock] = useState("")
     const [detail, setDetail] = useState("")
     let user1=useSelector((store)=>store.auth.user)
     let details = localStorage.getItem("user");
@@ -19,7 +19,7 @@ function add(e){
         productName:name,
         productPrice:price,
         category:category,
-        quantity:quantity,
+        stock:stock,
         productDetails:detail
 
     }
@@ -50,7 +50,7 @@ function add(e){
               <input
                 type="text"
                 placeholder="eg:Mobile"
-                className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[230px] border border-gray-300"
+                className="rounded-lg lg:w-[180px] p-2 text-sm md:w-[310px] xl:w-[210px] border border-gray-300"
                
                 onChange={(e) => setName(e.target.value)}
               />
@@ -60,7 +60,7 @@ function add(e){
               <input
                 type="text"
                 placeholder="$0000"
-                className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[230px] border border-gray-300"
+                className="rounded-lg lg:w-[180px] p-2 text-sm md:w-[310px] xl:w-[230px] border border-gray-300"
               
                 onChange={(e) => setPrice(e.target.value)}
               />
@@ -73,20 +73,20 @@ function add(e){
               <input
                 type="text"
                 placeholder="eg:electronics"
-                className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[230px] border border-gray-300"
+                className="rounded-lg lg:w-[180px] p-2 text-sm md:w-[310px] xl:w-[230px] border border-gray-300"
                
                 onChange={(e) => setCategory(e.target.value)}
                 
               />
             </div>
             <div className="flex flex-col gap-2 m-2">
-              <label>Quantity</label>
+              <label>No: of stock</label>
               <input
                 type="text"
                 placeholder="eg:20"
-                className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[230px] border border-gray-300"
+                className="rounded-lg lg:w-[180px] p-2 text-sm md:w-[310px] xl:w-[230px] border border-gray-300"
                
-                onChange={(e) => setQuantity(e.target.value)}
+                onChange={(e) => setStock(e.target.value)}
             
               />
             </div>

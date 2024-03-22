@@ -17,7 +17,7 @@ function Usersidebar(props) {
   return (
     
     
-    <div className='  w-[250px] bg-[#222831]  h-full p-[20px] '>
+    <div className='  w-[250px] bg-[#222831]  h-screen p-[20px] '>
       <div className='text-[#FFFFFF40] text-sm '>
        <p>CORE</p>
        </div>

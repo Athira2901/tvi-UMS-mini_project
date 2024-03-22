@@ -7,12 +7,16 @@ import PaginationSize from "../../Components/Pagination";
 // import { useNavigate } from "react-router-dom";
 import Viewproduct from "./Viewproduct";
 import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
+import Userviewproduct from "./Userviewproducts";
+
 function Userproductlist() {
 
   const [list, setList] = useState([]);
   const [total, setTotal] = useState(0);
   const [open, setOpen] = useState(false);
   const [vid, setVid] = useState("")
+  const [like, setLike] = useState([]);
   
  
   function handleOpen(id){
@@ -48,6 +52,12 @@ function Userproductlist() {
   function cpage(num) {
     cart(num);
   }
+  function wishlist(id) {
+    const LikedItem = like.includes(id)
+    ? like.filter((item) => item !== id)
+    : like.concat(id);
+  setLike(LikedItem);
+  };
  
   return (
     <div
@@ -57,18 +67,21 @@ function Userproductlist() {
       {/* <div>
         <Usernavbar handleclick={handleclick}/>
       </div> */}
-        {open ? (<Viewproduct open={open} cart={cart} setOpen={setOpen} vid={vid}/>) : ""}
-      <div className="flex flex-wrap justify-center   w-full">
+        {open ? (<Userviewproduct open={open} cart={cart} setOpen={setOpen} vid={vid}/>) : ""}
+      <div className="flex flex-wrap justify-center gap-[50px]  w-full h-[60vh] overflow-scroll pt-5">
       
         {list.map((li) => (
            
           <div
            
           key={li._id}
-          className="border border-gray-400 relative w-[230px] h-[280px] m-[10px] flex flex-col items-center  rounded-lg cursor-pointer bg-gradient-to-r from-[#eeaeca] to-[#9f94e9] shadow-3xl border-none"
+          className="border shadow-lg  hover:shadow-2xl hover:scale-[1.03] border-gray-400 relative w-[230px] h-[280px] m-[10px] flex flex-col items-center gap-5 rounded-lg cursor-pointer bg-gradient-to-r from-[#eeaeca] to-[#9f94e9] shadow-3xl border-none"
           >
-          <div className="absolute top-2 right-2  ">
-             <FaRegHeart />
+          <div className="absolute top-2 right-2" onClick={() => wishlist(li._id)}>
+          
+          
+          {like.includes(li._id) ? <FaHeart color="red" /> : <FaRegHeart/>} 
+          {/* <FaRegHeart color={like.includes(li._id) ? "red" : ""} /> */}
              </div>
              <div onClick={()=>handleOpen(li._id)} className=" h-full w-full mt-[30px] flex flex-col items-center  justify-center">
             <img src={products} alt="pdct" className="w-[100px] " />

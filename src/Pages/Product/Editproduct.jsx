@@ -26,7 +26,7 @@ export default function Editpdct(props) {
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
   const [category, setCategory] = useState("")
-  const [quantity, setQuantity] = useState("")
+  const [stock, setStock] = useState("")
   const [detail, setDetail] = useState("")
   const user1 = useSelector((store) => store.auth.user);
   let details = localStorage.getItem("user");
@@ -44,7 +44,7 @@ export default function Editpdct(props) {
       setName(response.data.result.productName)
       setPrice(response.data.result.productPrice)
       setCategory(response.data.result.category)
-      setQuantity(response.data.result.quantity)
+      setStock(response.data.result.stock)
       setDetail(response.data.result.productDetails)
     })
         
@@ -56,7 +56,7 @@ export default function Editpdct(props) {
         productName:name,
         productPrice:price,
         category:category,
-        quantity:quantity,
+        stock:stock,
         productDetails:detail
 
     }
@@ -134,8 +134,8 @@ export default function Editpdct(props) {
                 type="text"
                 placeholder="eg:20"
                 className="rounded-lg lg:w-[225px] p-2 text-sm md:w-[310px] xl:w-[200px] border border-gray-300"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}
             
               />
             </div>
