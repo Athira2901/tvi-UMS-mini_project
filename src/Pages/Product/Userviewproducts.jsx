@@ -10,10 +10,11 @@ import products from "../../assets/products.png";
 import axios from 'axios';
 import { FaRupeeSign } from "react-icons/fa";
 import { useEffect } from 'react';
-import { MdDelete } from "react-icons/md";
+
 import Editpdct from './Editproduct';
 import { HiShoppingCart } from "react-icons/hi";
 import { BsFillLightningFill } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
 const style = {
   position: 'absolute',
   top: '50%',
@@ -49,6 +50,7 @@ export default function Userviewproduct(props) {
     })
   }
   useEffect(()=>{
+    console.log(props.page)
     Viewpdct()
   },[])
   
@@ -63,7 +65,16 @@ export default function Userviewproduct(props) {
 
     }).then((response)=>console.log(response))
  }
-
+ function removecart(id){
+         axios.delete("http://localhost:8000/api/delete-cart/"+id,{
+          headers:{
+            Authorization: user1 || details,
+            genericvalue: "agent",
+          }
+         }).then((response)=>{
+          console.log(response)
+         })
+ }
   return (
     <div>
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
@@ -87,10 +98,17 @@ export default function Userviewproduct(props) {
            <h1 className='text-lg mt-2 '>Quantity:{viewpdct.stock}</h1>
            <h1 className='text-sm mt-2  text-justify  overflow-auto'>Description:{viewpdct.productDetails}</h1>
            <div className='flex justify-center mt-[30px] '>
+             {props.page == "cartlist"?(
+                  <div className='flex items-center gap-2 bg-[red]  text-white font-bold py-2 px-3 rounded mr-4'>
+                <MdDelete />
+                     <button onClick={()=>removecart(viewpdct._id)}  >Remove</button>
+                 </div>
+             ):(
+
              <div className='flex items-center gap-2 bg-[#FF9F00]  text-white font-bold py-2 px-3 rounded mr-4'>
              <HiShoppingCart />
                 <button onClick={()=>addtocart(viewpdct._id)}  >ADD TO CART</button>
-            </div>
+            </div>)}
             <div  className='flex items-center gap-2 bg-[#ff671b]  text-white font-bold py-3 px-[30px] rounded '>
                 <BsFillLightningFill />
                 <button >BUY NOW</button>

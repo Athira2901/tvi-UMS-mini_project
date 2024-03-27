@@ -6,7 +6,7 @@ import { HiShoppingCart } from "react-icons/hi";
 export default function Cartbadge() {
   return (
     <Stack spacing={1} direction="row">
-      <Badge badgeContent={1} color="secondary">
+      <Badge badgeContent={0} color="secondary">
       <HiShoppingCart color="action" fontSize="25px"/>
       </Badge>
       {/* <Badge badgeContent={4} color="success">

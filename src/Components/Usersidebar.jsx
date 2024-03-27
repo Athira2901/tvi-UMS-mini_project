@@ -12,7 +12,9 @@ import { FaListUl } from "react-icons/fa";
 function Usersidebar(props) {
     const navigate=useNavigate()
    
-
+function cartlist(){
+  navigate("/cartlist")
+}
     
   return (
     
@@ -26,11 +28,7 @@ function Usersidebar(props) {
         <FaUser />
         <button onClick={(e)=>props.click("userdetails")}>User Profile</button>
        </div >
-       {/* <div className='text-[#FFFFFF80] hover:text-white mt-4 flex items-center gap-2'> 
-       <FaTable />
-
-        <button onClick={datatable}>Datatable</button>
-       </div> */}
+      
        </div>
        <div className='text-[#FFFFFF40] text-sm mt-5 '>
        <p>INTERFACE</p>
@@ -41,11 +39,11 @@ function Usersidebar(props) {
         </div>
        <div className='mt-5 text-[#FFFFFF80] hover:text-white flex items-center gap-2'>
          <GiShoppingCart />
-        <button >Cart</button>
+        <button onClick={(e)=>props.click("cartlist")} >Cart</button>
         </div>
         <div className='mt-5 text-[#FFFFFF80] hover:text-white flex items-center gap-2'>
            <FaRegHeart />
-          <button >Wishlist</button>
+          <button onClick={(e)=>props.click("wishlist")}>Wishlist</button>
            
         </div>
 

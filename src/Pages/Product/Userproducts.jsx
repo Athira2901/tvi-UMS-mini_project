@@ -10,6 +10,8 @@ import Userproductlist from "./Userproductlist";
 import Usersidebar from "../../Components/Usersidebar";
 import Usernavbar from "../../Components/Usernavbar";
 import Userdetails from "../Userdetails";
+import Cartlist from "./Cartlist";
+import Wishlist from "./wishlist";
 function Userproduct() {
     const [ishide, setIshide] = useState(false);
     const [dat, setDat] = useState("");
@@ -63,34 +65,64 @@ const navigate=useNavigate()
     
                
         //   </div>
+        ):
+         dat == "cartlist" ?(
+            <div className="w-full">
+                <div className="ml-5">
+          <h1 className="mt-2 text-4xl">Product List</h1>
+        </div>
+        <div className="flex items-center justify-between">
+          <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
+            productlist
+
+          </h6>
+       
+        </div>
+        <div className="p-5 w-full">
+            <Cartlist/>
+          </div>
+          </div>
+        ):
+        dat == "wishlist"?
+        (
+          <div className="w-full">
+                <div className="ml-5">
+          <h1 className="mt-2 text-4xl">Product List</h1>
+        </div>
+        <div className="flex items-center justify-between">
+          <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
+            productlist
+
+          </h6>
+       
+        </div>
+        <div className="p-5 w-full">
+            <Wishlist/>
+          </div>
+          </div>
         ):(
-            <div className="flex flex-1 h-full">
-        
+              
     
         <div className="w-full">
-          <div className="ml-5">
-            <h1 className="mt-2 text-4xl">Product List</h1>
-          </div>
-          <div className="flex items-center justify-between">
-            <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
-              productlist
-
-            </h6>
-          
-            {/* <div onClick={Add} className="flex  p-5 items-center bg-[green] text-white h-[40px] w-[100px]  rounded-md hover:text-[green] hover:bg-white hover:outline outline-green-500 mr-[70px] ">
-            <IoIosAdd />
-            <button  >ADD</button>
-            </div> */}
-          </div>
-          <div className="p-5 w-full">
-           
-            <Userproductlist />
-          </div>
+        <div className="ml-5">
+          <h1 className="mt-2 text-4xl">Product List</h1>
         </div>
+        <div className="flex items-center justify-between">
+          <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
+            productlist
 
-           
+          </h6>
+       
+        </div>
+        <div className="p-5 w-full">
+         
+          <Userproductlist />
+        </div>
       </div>
-        )}
+
+         
+    
+        ) }
       
       </div>
       </div>

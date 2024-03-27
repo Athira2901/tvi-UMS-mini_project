@@ -14,6 +14,8 @@ import DataTable from "../Components/DataTable";
 import Products from "../Pages/Product/Products";
 import Addproducts from "../Pages/Product/Addproducts";
 import Userproduct from "../Pages/Product/Userproducts";
+import Cartlist from "../Pages/Product/Cartlist";
+import Wishlist from "../Pages/Product/wishlist";
 // import Edituser from "../Pages/Edituser";
 
 const router=createBrowserRouter([
@@ -32,7 +34,9 @@ const router=createBrowserRouter([
   // {path:"edituser",element:<Edituser/>}
   {path:"/product",element:<Products/>},
   {path:"/add",element:<Addproducts/>},
-  {path:"/userproduct",element:<Userproduct/>}
+  {path:"/userproduct",element:<Userproduct/>},
+  {path:"/cartlist",element:<Cartlist/>},
+  {path:"/wishlist",element:<Wishlist/>}
   
 
 ]);
