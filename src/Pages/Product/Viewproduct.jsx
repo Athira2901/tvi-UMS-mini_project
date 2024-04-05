@@ -9,6 +9,7 @@ import axios from 'axios';
 import { FaRupeeSign } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Editpdct from './Editproduct';
+import { CiCircleInfo } from "react-icons/ci";
 
 const style = {
   position: 'absolute',
@@ -26,6 +27,7 @@ const style = {
 export default function Viewproduct(props) {
 
   const [viewpdct, setViewpdct] = useState({});
+  const [imge, setImge] = useState([])
   const user1 = useSelector((store) => store.auth.user);
   let details = localStorage.getItem("user");
 
@@ -37,6 +39,10 @@ export default function Viewproduct(props) {
       }
     }).then((response) => {
       setViewpdct(response.data.result);
+      if(response.data.result.image.length > 0){
+        const base64String = btoa(String.fromCharCode(...new Uint8Array(response.data.result.image[0].data)))
+        setImge(base64String)
+      }
     });
   }
 
@@ -68,13 +74,27 @@ export default function Viewproduct(props) {
       >
         <Box sx={style} className="rounded-lg">
           <div className="flex items-center justify-center">
-            <img src={products} className="h-40 mt-5" alt="Product" />
+            {imge.length > 0 ?(
+            <img src={`data:image/png;base64,${imge}`} className="h-40 mt-5" alt="Product" />
+            ) :(
+              <img src={products} className="h-40 mt-5" alt="Product" />
+            )}
             <div className="ml-10">
-              <h1 className="text-4xl">{viewpdct.productName}</h1>
-              <h1 className="text-2xl mt-2 flex items-center"><FaRupeeSign className="mr-1" />{viewpdct.productPrice}</h1>
+              <h1 className="text-4xl">{viewpdct.title}</h1>
+              <div className='flex gap-3'>
+              <h1 className="text-2xl mt-2 flex items-center "><FaRupeeSign className="mr-1" />{viewpdct.discountedPrice}</h1>
+              <p className="text-md mt-2 flex items-center line-through text-[#878787]"><FaRupeeSign className="mr-1" />{viewpdct.price}</p>
+              <p className="text-lg mt-2 flex items-center text-[#388E3C] ">{viewpdct.offer} % off</p>
+               <div className='text-[grey] mt-4'>
+              <CiCircleInfo />
+              </div>
+              </div>
+
+
               <h1 className="text-lg mt-2">Category: {viewpdct.category}</h1>
               <h1 className="text-lg mt-2">No. of stock available: {viewpdct.stock}</h1>
-              <p className="text-sm mt-2">{viewpdct.productDetails}</p>
+              
+              <p className="text-sm mt-2">{viewpdct.description}</p>
               <div className="flex justify-center mt-4">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
                   <Editpdct editid={viewpdct._id} cart={props.cart} viewproduct={Viewproduct} Viewpdct={Viewpdct} />

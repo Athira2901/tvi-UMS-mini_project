@@ -5,6 +5,7 @@ import axios from "axios";
 import PaginationSize from "../../Components/Pagination";
 // import { useNavigate } from "react-router-dom";
 import Viewproduct from "./Viewproduct";
+import { FaRupeeSign } from "react-icons/fa";
 function Productlist() {
   const [list, setList] = useState([]);
   const [total, setTotal] = useState(0);
@@ -52,19 +53,39 @@ function Productlist() {
     >
         {open ? (<Viewproduct open={open} cart={cart} setOpen={setOpen} vid={vid}/>) : ""}
       <div className="flex flex-wrap justify-center   w-full">
-        {list.map((li) => (
+        {list.map((li) => {
+          if(li.image.length > 0){
+            const base64String = li.image[0].data
+            ? btoa(String.fromCharCode(...new Uint8Array(li.image[0].data)))
+            : null;
+          var imgUrl = base64String
+            ? `data:image/jpeg;base64,${base64String}`
+            : products;
+
+          }
+          return(
           <div
            onClick={()=>handleOpen(li._id)}
           key={li._id}
           className="border border-gray-400  w-[230px] m-[10px] flex flex-col items-center p-[60px] rounded-lg cursor-pointer bg-gradient-to-r from-[#eeaeca] to-[#9f94e9] shadow-3xl border-none"
           >
-            <img src={products} alt="pdct" className="w-[100px] " />
+            {li.image.length > 0 ? (
+            <img src={imgUrl} alt="pdct" className="w-[100px] " />
+            ) : (
+              <img src={products} alt="pdct" className="w-[100px]" />
+            )}
             <div className="flex  flex-col ">
-              <h1 className="pt-5">{li.productName}</h1>
-              <h5 className="text-[grey] ">${li.productPrice}</h5>
+              <p className="pt-3 text-lg text-center hover:text-[grey]">{li.title}</p>
+              <div className='flex gap-3'>
+              <h1 className="text-xl mt-2 flex items-center "><FaRupeeSign className="mr-1" />{li.discountedPrice}</h1>
+              <p className="text-md mt-2 flex items-center line-through text-[#878787]"><FaRupeeSign className="mr-1" />{li.price}</p>
+
+              </div>
+              <p className="text-md mt-2 flex items-center text-[#388E3C] justify-center italic">{li.offer} % off</p>
             </div>
           </div>
-        ))}
+          );
+            })}
       </div>
       <div className="flex justify-center mt-3">
         <PaginationSize cpage={cpage} total={total} />

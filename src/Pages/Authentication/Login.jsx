@@ -6,7 +6,7 @@ import {useDispatch} from  "react-redux"
 
 function Login() {
   const [email, setEmail] = useState("@gmail.com");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("admin@123");
   const [message,setMessage] = useState("")
   const[values,setValues]=useState("")
   const navigate = useNavigate();

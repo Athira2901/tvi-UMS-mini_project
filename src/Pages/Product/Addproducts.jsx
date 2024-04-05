@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 function Addproducts() {
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
+   
+    const [offer, setOffer] = useState("")
     const [category, setCategory] = useState("")
     const [stock, setStock] = useState("")
     const [detail, setDetail] = useState("")
@@ -15,15 +17,17 @@ function Addproducts() {
     const navigate=useNavigate()
 function add(e){
     e.preventDefault()
-    var list={
-        productName:name,
-        productPrice:price,
-        category:category,
-        stock:stock,
-        productDetails:detail
-
-    }
-    axios.post("http://localhost:8000/api/addProdt",list,{
+    const product= new FormData()
+    product.append("title", name)
+    product.append("price", price)
+    product.append("description", detail)
+    product.append("category", category)
+    product.append("offer", offer)
+    product.append("stock", stock)
+    product.append("color", "red")
+    product.append("availability", "yes") 
+    
+    axios.post("http://localhost:8000/api/addProdt",product,{
         headers:{
             Authorization:user1 || details,
             genericvalue:"admin"
@@ -66,6 +70,19 @@ function add(e){
               />
             </div>
           </div>
+         
+         
+          <div className="flex flex-col gap-2 m-2">
+              <label>Offer</label>
+              <input
+                type="text"
+                placeholder="20%"
+                className="rounded-lg  p-2 text-sm xl:w-[475px] md:w-[310px]   border border-gray-300"
+               
+                onChange={(e) => setOffer(e.target.value)}
+            
+              />
+            </div>
          
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="flex flex-col gap-2 m-2">

@@ -12,6 +12,9 @@ import Usernavbar from "../../Components/Usernavbar";
 import Userdetails from "../Userdetails";
 import Cartlist from "./Cartlist";
 import Wishlist from "./wishlist";
+import Buyproduct from "./Buyproduct";
+import Addresslist from "./Addresslist";
+import Addaddress from "./Address/Addaddress";
 function Userproduct() {
     const [ishide, setIshide] = useState(false);
     const [dat, setDat] = useState("");
@@ -45,41 +48,22 @@ const navigate=useNavigate()
                
             <Userdetails/>
           </div>
-        //     <div className="flex flex-1 h-full">
-        
-    
-        //     <div className="w-full">
-        //       <div className="ml-5">
-        //         <h1 className="mt-2 text-4xl">Product List</h1>
-        //       </div>
-        //       <div className="flex items-center justify-between">
-        //         <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3">
-        //           productlist
-    
-        //         </h6>
-              
-
-        //       </div>
-              
-        //     </div>
-    
-               
-        //   </div>
+      
         ):
          dat == "cartlist" ?(
             <div className="w-full">
                 <div className="ml-5">
-          <h1 className="mt-2 text-4xl">Product List</h1>
+          <h1 className="mt-2 text-4xl"> Cart</h1>
         </div>
         <div className="flex items-center justify-between">
           <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
-            productlist
+            cart
 
           </h6>
        
         </div>
         <div className="p-5 w-full">
-            <Cartlist/>
+            <Cartlist click={click}/>
           </div>
           </div>
         ):
@@ -87,20 +71,75 @@ const navigate=useNavigate()
         (
           <div className="w-full">
                 <div className="ml-5">
-          <h1 className="mt-2 text-4xl">Product List</h1>
+          <h1 className="mt-2 text-4xl">WishList</h1>
         </div>
         <div className="flex items-center justify-between">
           <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
-            productlist
+            wishlist
 
           </h6>
        
         </div>
         <div className="p-5 w-full">
-            <Wishlist/>
+            <Wishlist click={click}/>
           </div>
           </div>
-        ):(
+        ):
+        dat == "buyproduct" ?
+        (
+          <div className="w-full">
+                <div className="ml-5">
+          <h1 className="mt-2 text-4xl">Order Summary</h1>
+        </div>
+        <div className="flex items-center justify-between">
+          <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
+            order summary
+
+          </h6>
+       
+        </div>
+        <div className="p-5 w-full">
+            <Buyproduct click={click}/>
+          </div>
+          </div>
+        ):
+        dat == "addresslist" ?
+        (
+          <div className="w-full">
+                <div className="ml-5">
+          <h1 className="mt-2 text-4xl">Address</h1>
+        </div>
+        <div className="flex items-center justify-between">
+          <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
+            address
+
+          </h6>
+       
+        </div>
+        <div className="p-5 w-full">
+            <Addresslist click={click}/>
+          </div>
+          </div>
+        ):
+        dat == "addaddress" ?
+        (
+          <div className="w-full">
+                <div className="ml-5">
+          <h1 className="mt-2 text-4xl">Add Delivery address</h1>
+        </div>
+        <div className="flex items-center justify-between">
+          <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
+            add delivery address
+
+          </h6>
+       
+        </div>
+        <div className="p-5 w-full flex justify-center">
+            <Addaddress click={click}/>
+          </div>
+          </div>
+        ):
+        (
               
     
         <div className="w-full">
@@ -116,7 +155,7 @@ const navigate=useNavigate()
         </div>
         <div className="p-5 w-full">
          
-          <Userproductlist />
+          <Userproductlist click={click} />
         </div>
       </div>
 
