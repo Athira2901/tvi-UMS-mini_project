@@ -11,6 +11,7 @@ function Buyproduct(props) {
   const [quantity, setQuantity] = useState(1);
   let details = localStorage.getItem("user");
   const [cart, setCart] = useState([])
+  const [firstAddress, setFirstAddress] = useState([])
 
 
   function getaddress() {
@@ -22,6 +23,7 @@ function Buyproduct(props) {
         },
       })
       .then((response) => {
+        setFirstAddress(response.data.result[0].address[0]);
         // console.log(response.data.result[0].address[0])
         // console.log("imagepdct =",props.viewid,props.products)
         if (props.products.image.length > 0) {
@@ -31,8 +33,8 @@ function Buyproduct(props) {
           setImgUrl(base64String);
         }
         props.singleaddr
-          ? setAddress(props.singleaddr)
-          : setAddress(response.data.result[0].address[0]);
+          ? setAddress(props.singleaddr):
+           setAddress(response.data.result[0].address[0]);
       });
   }
 
@@ -79,20 +81,20 @@ function Buyproduct(props) {
               <button>CHANGE</button>
             </div>
           </div>
-          <h1 className="text-xl mt-3">{address?.fullName}</h1>
+          <h1 className="text-xl mt-3">{firstAddress?.fullName}</h1>
           <div className="mt-2">
             <div className="flex ">
-              <h2>{address?.buildingName},</h2>
-              <h2>{address?.landmark},</h2>
-              <h2>{address?.area}</h2>
+              <h2>{firstAddress?.buildingName},</h2>
+              <h2>{firstAddress?.landmark},</h2>
+              <h2>{firstAddress?.area}</h2>
             </div>
             <div className="flex ">
-              <h2>{address?.city},</h2>
-              <h2>{address?.pincode}</h2>
+              <h2>{firstAddress?.city},</h2>
+              <h2>{firstAddress?.pincode}</h2>
             </div>
-            <h2>{address?.state}</h2>
+            <h2>{firstAddress?.state}</h2>
 
-            <h2>{address?.phoneNumber}</h2>
+            <h2>{firstAddress?.phoneNumber}</h2>
           </div>
         </div>
         {props.userviewproduct=="userview" ? (
