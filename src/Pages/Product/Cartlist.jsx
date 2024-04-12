@@ -3,6 +3,7 @@ import products from "../../assets/products.png";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Userviewproduct from './Userviewproducts';
+import { FaRupeeSign } from "react-icons/fa";
 function Cartlist(props) {
     const [cart, setCart] = useState([])
     const [open, setOpen] = useState(false);
@@ -29,7 +30,12 @@ function Cartlist(props) {
   }
     useEffect(()=>{
       cartapi()
+      console.log('-------',props.singleaddr)
     },[])
+    function gotocart(){
+
+    }
+    
   return (
     <div
      
@@ -48,6 +54,7 @@ function Cartlist(props) {
             // console.log(i, base64String);
           
           }
+        
          return(
           <div
           onClick={()=>handleOpen(li.productId)}
@@ -58,15 +65,34 @@ function Cartlist(props) {
             ) : (
               <img src={products} alt="pdct" className="w-[100px] " />
             )}
-            <div className="flex  flex-col ">
-              <h1 className="pt-5">{li.title}</h1>
-              <h5 className="text-[grey] ">${li.price}</h5>
-            </div>
+              <div className="flex  flex-col ">
+                  <p className="pt-3 text-lg text-center hover:text-[grey]">
+                    {li.title}
+                  </p>
+                  <div className="flex gap-3">
+                    <h1 className="text-xl mt-2 flex items-center ">
+                      <FaRupeeSign className="mr-1" />
+                      {li.discountedPrice}
+                    </h1>
+                    <p className="text-md mt-2 flex items-center line-through text-[#878787]">
+                      <FaRupeeSign className="mr-1" />
+                      {li.price}
+                    </p>
+                  </div>
+                  <p className="text-md mt-2 flex items-center text-[#388E3C] justify-center italic">
+                    {li.offer} % off
+                  </p>
+                </div>
           </div>
          )
         })}
       </div>
-      
+      <div className='flex'>
+        <p className='mt-5'>price</p>
+      <div className='flex justify-center bg-[darkorange] hover:bg-[orange] w-[180px] h-[40px] rounded-md mt-5 ml-[800px]'>
+      <button onClick={()=>props.click("buyproduct","",cart,"")}>PLACE ORDER</button>
+      </div>
+      </div>
     </div>
   )
 }

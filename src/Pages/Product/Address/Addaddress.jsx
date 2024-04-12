@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import axios from "axios";
 import { useSelector } from "react-redux";
-function Addaddress() {
+import { useNavigate } from 'react-router-dom'
+
+function Addaddress(props) {
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [altphno, setAltphno] = useState("");
@@ -14,6 +16,7 @@ function Addaddress() {
   const [landmark, setLandmark] = useState("");
   let user1 = useSelector((store) => store.auth.user);
   let details = localStorage.getItem("user");
+  const navigate=useNavigate()
   function add(e) {
     var list = {
       fullName: fullName,
@@ -34,7 +37,9 @@ function Addaddress() {
         },
       })
       .then((response) => {
+        props.click("addresslist")
         console.log(response);
+     
       });
   }
 

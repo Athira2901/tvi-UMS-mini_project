@@ -33,7 +33,7 @@ function Userproductlist(props) {
         },
       })
       .then((response) => {
-        console.log(response);
+        console.log("answer=",response);
         setTotal(response.data.totalCount);
         setList(response.data.products);
         console.log(response);

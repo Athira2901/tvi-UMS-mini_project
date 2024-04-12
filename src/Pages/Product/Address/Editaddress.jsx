@@ -35,29 +35,21 @@ export default function Editaddress(props) {
   let user1=useSelector((store)=>store.auth.user)
   let details = localStorage.getItem("user");
   useEffect(()=>{
-    console.log("props.editid:", props.editid);
-    axios.get("http://localhost:8000/api/address-view",{
-        headers:{
-            Authorization:user1 || details,
-            genericvalues: "agent",
-          }
-    })
-    .then((response)=>{
-      console.log(response)
-      setFullName(response.data.result[0].address[0].fullName)
-      setPhoneNumber(response.data.result[0].address[0].phoneNumber.toString())
+    
+      setFullName(props.addr.fullName)
+      setPhoneNumber(props.addr.phoneNumber)
 
 
 
-      setAltphno(response.data.result[0].address[0].alternateNumber.toString())
-      setPincode(response.data.result[0].address[0].pincode.toString())
-      setStates(response.data.result[0].address[0].state)
-      setCity(response.data.result[0].address[0].city)
-      setBname(response.data.result[0].address[0].buildingName)
-      setArea(response.data.result[0].address[0].area)
-      setLandmark(response.data.result[0].address[0].landmark)
+      setAltphno(props.addr.alternateNumber)
+      setPincode(props.addr.pincode)
+      setStates(props.addr.state)
+      setCity(props.addr.city)
+      setBname(props.addr.buildingName)
+      setArea(props.addr.area)
+      setLandmark(props.addr.landmark)
    
-    })
+  
 },[])
 function updateaddress(e){
  e.preventDefault()
@@ -87,7 +79,7 @@ function updateaddress(e){
 
   return (
     <div>
-      <Button onClick={handleOpen}>EDIT</Button>
+      <Button onClick={handleOpen} >EDIT</Button>
       <Modal
         open={open}
         onClose={handleClose}
