@@ -67,7 +67,7 @@ function Productlist() {
           <div
            onClick={()=>handleOpen(li._id)}
           key={li._id}
-          className="border border-gray-400  w-[230px] m-[10px] flex flex-col items-center p-[60px] rounded-lg cursor-pointer bg-gradient-to-r from-[#eeaeca] to-[#9f94e9] shadow-3xl border-none"
+          className="border border-gray-400 hover:scale-[1.03]  w-[250px] h-[300px] p-[60px] m-[10px] flex flex-col items-center  rounded-lg cursor-pointer bg-[#D8D8D8] shadow-3xl border-none"
           >
             {li.image.length > 0 ? (
             <img src={imgUrl} alt="pdct" className="w-[100px] " />

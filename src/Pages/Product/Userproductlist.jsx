@@ -132,7 +132,7 @@ function Userproductlist(props) {
           return (
             <div
               key={li._id}
-              className="border shadow-lg  hover:shadow-2xl hover:scale-[1.03] border-gray-400 relative w-[230px] h-[280px] m-[10px] flex flex-col items-center gap-5 rounded-lg cursor-pointer bg-gradient-to-r from-[#eeaeca] to-[#9f94e9] shadow-3xl border-none"
+              className="border shadow-lg  hover:shadow-2xl hover:scale-[1.03] border-gray-400 relative w-[230px] h-[280px] m-[10px] flex flex-col items-center gap-5 rounded-lg cursor-pointer bg-[#D8D8D8] shadow-3xl border-none"
             >
               <div className="absolute top-2 right-2">
                 {like.includes(li._id) ? (

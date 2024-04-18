@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Userviewproduct from './Userviewproducts';
 import { FaHeart } from "react-icons/fa6";
+import wishlist from "../../assets/wishlist.webp"
 
 function Wishlist(props) {
     const [wishl, setWishl] = useState([])
@@ -31,12 +32,31 @@ function Wishlist(props) {
     useEffect(()=>{
       wishlistapi()
     },[])
+    function shopnow(){
+      props.click("product")
+     }
   return (
     <div
      
       className="flex  flex-col justify-center border w-full "
     >
        {open ? (<Userviewproduct open={open} click={props.click} page={"wishlist"} wishlistapi={wishlistapi} setOpen={setOpen} vid={vid}/>) : ""}
+       {wishl.length === 0 ? (
+        <div className="flex items-center justify-center  bg-[#F0F0F0]">
+        <div className="flex flex-col items-center">
+          <img src={wishlist} className="h-[200px] w-[200px]" alt="Cart" />
+          <h1 className="text-center text-2xl text-[red] ">Your Wishlist is empty!</h1>
+          <div className='mt-3 text-[#008ae6]'>
+          <p>seems like you don't have wishes here</p>
+          <p className='ml-[90px]'>Make a wish !</p>
+          </div>
+          <p></p>
+          <button onClick={shopnow} className="bg-[#006bb3] hover:bg-[#0040ff] text-white w-[170px] h-[40px] rounded-lg mt-5">
+            Start Shopping
+          </button>
+        </div>
+      </div>
+       ) : (
       <div className="flex flex-wrap justify-center   w-full h-[60vh] overflow-scroll pt-5">
         {wishl.map((li) => {
            if (li.image.length > 0) {
@@ -52,7 +72,7 @@ function Wishlist(props) {
          return(
           <div
           onClick={()=>handleOpen(li._id)}
-          className="border border-gray-400 relative hover:scale-[1.08] w-[230px] m-[10px] flex flex-col items-center p-[60px] rounded-lg cursor-pointer bg-gradient-to-r from-[#eeaeca] to-[#9f94e9] shadow-3xl border-none"
+          className="border border-gray-400 relative hover:scale-[1.08] w-[230px] h-[280px] p-[60px] m-[10px] flex flex-col items-center  rounded-lg cursor-pointer bg-[#D8D8D8] shadow-3xl border-none"
           >
             <div className="absolute top-2 right-2" 
             // onClick={() => wishlist(li._id)}
@@ -74,7 +94,7 @@ function Wishlist(props) {
          )
         })}
       </div>
-      
+       )}
     </div>
   )
 }

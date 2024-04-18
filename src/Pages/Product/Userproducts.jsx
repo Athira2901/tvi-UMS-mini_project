@@ -33,6 +33,7 @@ function Userproduct() {
     setProducts(product);
     setUserviewproduct(page);
     setSingleaddr(singleaddress);
+    console.log("helloo=",singleaddress)
   }
 
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ function Userproduct() {
               </h6>
             </div>
             <div className="p-5 w-full">
-              <Cartlist click={click} singleaddr={singleaddr}/>
+              <Cartlist click={click} singleaddr={singleaddr} products={products}/>
             </div>
           </div>
         ) : dat == "wishlist" ? (
@@ -94,6 +95,9 @@ function Userproduct() {
               <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
                 order summary
               </h6>
+              <div className="bg-[grey] flex items-center p-5 w-[100px] h-[40px]  text-center  rounded-lg  hover:text-[white] mr-[70px]">
+        <button >BACK</button>
+      </div>
             </div>
             <div className="p-5 w-full">
               <Buyproduct
