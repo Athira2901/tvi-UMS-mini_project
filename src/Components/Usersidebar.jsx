@@ -6,7 +6,7 @@ import { FaTable } from "react-icons/fa";
 import { GiShoppingCart } from "react-icons/gi";
 import { FaRegHeart } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa";
-
+import { BsBox } from "react-icons/bs";
 
 
 function Usersidebar(props) {
@@ -47,6 +47,11 @@ function cartlist(){
            
         </div>
 
+        <div className='mt-5 text-[#FFFFFF80] hover:text-white flex items-center gap-2'>
+        <BsBox />
+          <button onClick={(e)=>props.click("orderproduct")}>Orders</button>
+           
+        </div>
       
         
     </div>

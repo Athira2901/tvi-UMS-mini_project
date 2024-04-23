@@ -3,7 +3,8 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import products from "../../assets/products.png";
+import Uploadimg from '../../Components/Uploadimg'
 function Addproducts() {
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
@@ -12,6 +13,8 @@ function Addproducts() {
     const [category, setCategory] = useState("")
     const [stock, setStock] = useState("")
     const [detail, setDetail] = useState("")
+    const [img, setImg] = useState("")
+    const [imgfile, setImgfile] = useState({})
     let user1=useSelector((store)=>store.auth.user)
     let details = localStorage.getItem("user");
     const navigate=useNavigate()
@@ -26,6 +29,8 @@ function add(e){
     product.append("stock", stock)
     product.append("color", "red")
     product.append("availability", "yes") 
+    product.append("image",imgfile)
+
     
     axios.post("http://localhost:8000/api/addProdt",product,{
         headers:{
@@ -37,16 +42,27 @@ function add(e){
     })
    
 }
+function handlefn(file,imge){
+ setImgfile(file)
+ setImg(imge)
+}
   return (
    
     <div className="bg-[#2d2d2d] h-full md:h-[655px]  flex flex-col items-center">
    
-    <div className="bg-[#E6E6E6] relative top-[40px]  flex flex-col items-center   m-[20px] w-[80%] md:w-[90%] lg:w-[40%]  rounded-lg">
-      <div className="mt-5 border border-b-gray-300  p-5 w-[100%]">
+    <div className="bg-[#E6E6E6] relative top-[40px] h-[800px] overflow-scroll flex flex-col items-center   m-[20px] w-[80%] md:w-[90%] lg:w-[40%]  rounded-lg">
+      <div className="mt-5 border border-b-gray-300  p-3 w-[100%]">
         <h1 className=" text-center text-4xl  ">Add Products</h1>
       </div>
 
       <form className="flex flex-col mt-1 p-3 w-[100%] ">
+      <div >
+       {img ? (
+        <img src={img} className='h-[120px]'/>):(
+          <img src={products} className='h-[120px]'/>)
+        }
+       <Uploadimg handlefn={handlefn}/>
+        </div>
       
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="flex flex-col gap-2 m-2">

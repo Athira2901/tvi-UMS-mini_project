@@ -6,6 +6,8 @@ import Modal from '@mui/material/Modal';
 import { FaEdit } from "react-icons/fa";
 import { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import products from "../../assets/products.png";
+import Uploadimg from '../../Components/Uploadimg'
 import axios from 'axios';
 const style = {
   position: 'absolute',
@@ -26,11 +28,13 @@ export default function Editpdct(props) {
   const handleClose = () => setOpen(false);
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
-
+  const [picture, setPicture] = useState("")
   const [offer, setOffer] = useState("")
   const [category, setCategory] = useState("")
   const [stock, setStock] = useState("")
   const [detail, setDetail] = useState("")
+  const [img, setImg] = useState({})
+  const [image, setImage] = useState("")
   const user1 = useSelector((store) => store.auth.user);
   let details = localStorage.getItem("user");
 //   console.log(props.viewpdct.productName)
@@ -51,6 +55,10 @@ export default function Editpdct(props) {
       setCategory(response.data.result.category)
       setStock(response.data.result.stock)
       setDetail(response.data.result.description)
+      // setImgfile(response.data.result.image)
+      const base64String=btoa(String.fromCharCode(...new Uint8Array(response.data.result.image[0].data)))
+      var imgUrl = `data:image/jpeg;base64,${base64String}`
+      setPicture(imgUrl)
     })
 
   },[props.editid])
@@ -65,6 +73,9 @@ export default function Editpdct(props) {
     product.append("stock", stock)
     product.append("color", "red")
     product.append("availability", "yes")
+   if(image){
+     product.append("image", img)
+   }
     axios.put("http://localhost:8000/api/updateProdt/"+props.editid,product,{
         headers:{
             Authorization:user1 || details,
@@ -75,6 +86,11 @@ export default function Editpdct(props) {
       handleClose()}
     )
     console.log(name)
+ }
+ function handlefn(file,path){
+   setImg(file)
+   setImage(path)
+  console.log(file,path);
  }
   return (
     <div>
@@ -97,7 +113,12 @@ export default function Editpdct(props) {
       </div>
 
       <form className="flex flex-col mt-1 p-3 w-[100%] ">
-
+      <div >
+       
+        <img src={image? image: picture? picture:products} className='h-[120px]'/>
+      
+       <Uploadimg handlefn={handlefn}/>
+        </div>
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="flex flex-col gap-3 m-3">
               <label>Product Name</label>

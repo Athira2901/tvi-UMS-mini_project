@@ -15,6 +15,7 @@ import Wishlist from "./wishlist";
 import Buyproduct from "./Buyproduct";
 import Addresslist from "./Addresslist";
 import Addaddress from "./Address/Addaddress";
+import Orderproduct from "./Order/Orderproduct";
 function Userproduct() {
   const [ishide, setIshide] = useState(false);
   const [dat, setDat] = useState("");
@@ -144,7 +145,21 @@ function Userproduct() {
               <Addaddress click={click} />
             </div>
           </div>
-        ) : (
+        ) : dat == "orderproduct" ? (
+          <div className="w-full">
+            <div className="ml-5">
+              <h1 className="mt-2 text-4xl">Orders</h1>
+            </div>
+            <div className="flex items-center justify-between">
+              <h6 className="bg-[#E9ECEF] text-[#6c757D] ml-5 mt-3 p-3 w-full">
+                orders
+              </h6>
+            </div>
+            <div className="p-5 w-full">
+              <Orderproduct />
+            </div>
+          </div>
+        ):(
           <div className="w-full">
             <div className="ml-5">
               <h1 className="mt-2 text-4xl">Product List</h1>

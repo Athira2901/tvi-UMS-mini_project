@@ -8,7 +8,7 @@ function Uploadimg(props) {
             const reader=new FileReader();
             reader.onload=()=>{
                 setImg(reader.result);
-                props.handlefn(reader.result)
+                props.handlefn(file,reader.result)
             };
             reader.readAsDataURL(file);
         }
